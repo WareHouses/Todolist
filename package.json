@@ -1,0 +1,40 @@
+{
+	"name": "todolist",
+	"app_name": "Warehouses Todolist",
+	"version": "1.0.0",
+	"description": "Todolist example made to begin in React",
+	"main": "gulpfile.js",
+	"dependencies": {
+		"gulp": "^3.9.1",
+		"gulp-autoprefixer": "^4.0.0",
+		"gulp-sass": "^3.1.0",
+		"gulp-sourcemaps": "^2.6.1",
+		"gulp-todo": "^5.4.0",
+		"react": "^16.2.0",
+		"react-dom": "^16.2.0",
+		"react-scripts": "^1.0.17"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test --env=jsdom",
+		"eject": "react-scripts eject"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/WareHouses/Todolist.git"
+	},
+	"keywords": [
+		"React",
+		"javascript",
+		"html5",
+		"css3"
+	],
+	"author": "Juan Manuel Sánchez Lozano",
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://github.com/WareHouses/Todolist/issues"
+	},
+	"homepage": "https://github.com/WareHouses/Todolist#readme"
+}

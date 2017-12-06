@@ -1,0 +1,24 @@
+{
+	"sass": {
+		"src": "./scss/styles.scss",
+		"dest": "./src/css",
+		"watch": "./scss/**/*.scss",
+		"plugin": {
+			"outputStyle": "expanded",
+			"sourceComments": false
+		},
+		"autoprefixer": {
+			"browsers": "last 2 versions",
+			"cascade": false
+		}
+	},
+	"todo": {
+		"src": [".scss/**/*.scss", ".src/**/*", ".js/**/*.js"],
+		"dest": "./",
+		"plugin": {
+			"fileName": "todo.json",
+			"reporter": "json",
+			"skipUnsupported": true
+		}
+	}
+}
