@@ -4,32 +4,22 @@ import { Button } from './';
 class TDItem extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			text: this.props.text,
-			check: false
-		};
-		this.handleClick = this.handleClick.bind(this);
-	}
-
-	handleClick(e) {
-		e.preventDefault();
-		this.setState(prevState => ({
-			check: !prevState.check
-		}));
+		this.state = {};
 	}
 
 	render() {
-		let className = "todolist_item";
-		let iconClass = "icon icon-arrow-right";
-		if(this.state.check) {
-			className += " checked";
-			iconClass = "icon icon-check";
+		const { id, text, check, removeItem, toggleCheck } = this.props;
+		let className = " ";
+		let iconClass = " icon-arrow-right";
+		if(check) {
+			className = " checked";
+			iconClass = " icon-check";
 		}
 		return (
-			<li className={className}
-				onClick={this.handleClick}>
-				<span className={iconClass}/>
-				{this.state.text}
+			<li className={"todolist_item" + className}>
+				<span className={"icon todolist_item_icon" + iconClass} onClick={() => toggleCheck(id)}/>
+				<span className="todolist_item_text" onClick={() => toggleCheck(id)}>{text}</span>
+				<span className="icon icon-times todolist_item_remove" onClick={() => removeItem(id)}/>
 			</li>
 		);
 	}
@@ -47,7 +37,11 @@ class TDList extends React.Component {
 				{this.props.items.map(item => (
 					<TDItem
 						key={item.id}
-						text={item.text}/>
+						id={item.id}
+						text={item.text}
+						check={item.check}
+						removeItem={this.props.removeItem}
+						toggleCheck={this.props.toggleCheck}/>
 				))}
 			</ul>
 		);
@@ -61,44 +55,64 @@ class TodoList extends React.Component {
 			items: [],
 			text: ''
 		};
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.addTask = this.addTask.bind(this);
-		this.cleanTasks = this.cleanTasks.bind(this);
 	}
 
-	handleChange(e) {
+	handleChange = (e) => {
 		this.setState({
 			text: e.target.value
 		});
-	}
+	};
 
-	handleSubmit(e) {
+	handleSubmit = (e) => {
 		e.preventDefault();
 		if (!this.state.text.length) {
 			this.cleanTasks();
 			return;
 		}
 		this.addTask();
-	}
+	};
 
-	addTask() {
+	addTask = () => {
 		const newItem = {
 			text: this.state.text,
-			id: Date.now()
+			id: Date.now(),
+			check: false
 		};
 		this.setState(prevState => ({
 			items: prevState.items.concat(newItem),
 			text: ''
 		}));
-	}
+	};
 
-	cleanTasks() {
-		let newProps = [];
-		this.setState({
-			items: newProps
+	cleanTasks = () => {
+		let newItems = this.state.items.filter((item) => {
+			return item.check === false;
 		});
-	}
+		this.setState({
+			items: newItems
+		});
+	};
+
+	removeItem = (id) => {
+		let newItems = this.state.items.filter((item) => {
+			return item.id !== id;
+		});
+		this.setState({
+			items: newItems
+		});
+	};
+
+	toggleCheck = (id) => {
+		let items = this.state.items.filter((item) => {
+			if(item.id === id) {
+				item.check = (item.check === false);
+			}
+			return true;
+		});
+		this.setState(prevState => ({
+			items: items
+		}));
+	};
 
 	render() {
 		let buttonText = "Limpiar";
@@ -110,7 +124,7 @@ class TodoList extends React.Component {
 
 		return (
 			<section className="todolist">
-				<TDList items={this.state.items}/>
+				<TDList items={this.state.items} removeItem={this.removeItem} toggleCheck={this.toggleCheck}/>
 				<form onSubmit={this.handleSubmit} className="todolist_controls">
 					<input type="text"
 						onChange={this.handleChange}

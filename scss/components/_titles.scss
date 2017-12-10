@@ -1,3 +1,7 @@
+.center {
+	text-align: center;
+}
+
 @include from(tablet) {
 	.title, .big_title {
 		font-size: $font-size * 5;

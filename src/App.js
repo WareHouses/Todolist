@@ -11,7 +11,7 @@ class App extends React.Component {
 		return (
 			<React.Fragment>
 				<section className="maincontent">
-					<h1 className="big_title">{Package.app_name}</h1>
+					<h1 className="big_title center">{Package.app_name}</h1>
 					<TodoList/>
 				</section>
 				<Footer/>

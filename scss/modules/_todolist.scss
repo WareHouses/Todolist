@@ -12,10 +12,14 @@
 	}
 
 	.todolist_item {
-		padding: $padding;
 		display: flex;
 		transition: all 0.1s ease-out;
 		user-select: none;
+		border-bottom: 1px solid $gray-9;
+
+		&:last-child {
+			border-bottom: 0;
+		}
 
 		&:nth-child(odd) {
 			background: $cyan-95;
@@ -33,14 +37,30 @@
 			text-decoration: line-through;
 			background: $green-90;
 
-			.icon {
+			.todolist_item_icon {
 				color: $green-20;
 			}
 		}
 	}
 
-	.icon {
-		margin-right: $margin;
+	.todolist_item_icon {
+		padding: $padding;
+	}
+
+	.todolist_item_text {
+		flex-grow: 1;
+		padding: $padding;
+		word-break: break-all;
+	}
+
+	.todolist_item_remove {
+		opacity: 0.4;
+		padding: $padding;
+
+		&:hover {
+			color: $red-50;
+			opacity: 1;
+		}
 	}
 
 	.todolist_controls {

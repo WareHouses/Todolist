@@ -5097,6 +5097,10 @@ a {
   box-shadow: 0 0 0;
 }
 
+.center {
+  text-align: center;
+}
+
 @media all and (min-width: 768px) {
   .title, .big_title {
     font-size: 80px;
@@ -5267,7 +5271,6 @@ a {
 }
 
 .todolist .todolist_item {
-  padding: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5277,6 +5280,11 @@ a {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  border-bottom: 1px solid #999999;
+}
+
+.todolist .todolist_item:last-child {
+  border-bottom: 0;
 }
 
 .todolist .todolist_item:nth-child(odd) {
@@ -5297,12 +5305,30 @@ a {
   background: #d4f7d4;
 }
 
-.todolist .todolist_item.checked .icon {
+.todolist .todolist_item.checked .todolist_item_icon {
   color: #0f570f;
 }
 
-.todolist .icon {
-  margin-right: 10px;
+.todolist .todolist_item_icon {
+  padding: 10px;
+}
+
+.todolist .todolist_item_text {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 10px;
+  word-break: break-all;
+}
+
+.todolist .todolist_item_remove {
+  opacity: 0.4;
+  padding: 10px;
+}
+
+.todolist .todolist_item_remove:hover {
+  color: #d92626;
+  opacity: 1;
 }
 
 .todolist .todolist_controls {
