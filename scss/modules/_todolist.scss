@@ -1,14 +1,29 @@
+.todolist_container {
+	display: flex;
+	width: 800px;
+}
+
 .todolist {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	width: 300px;
+	flex-grow: 1;
+	padding: $padding;
+
+	&:first-child {
+		flex-grow: 0;
+		border-right: 1px solid $gray-9;
+	}
 
 	.todolist_list {
 		list-style: none;
 		padding: 0;
-		width: 300px;
-		max-height: 300px;
+		flex-grow: 1;
+		height: 300px;
 		overflow: auto;
+		width: 100%;
+		margin: 0;
+		margin-bottom: $margin;
 	}
 
 	.todolist_item {
@@ -34,8 +49,8 @@
 		}
 
 		&.checked {
-			text-decoration: line-through;
 			background: $green-90;
+			text-decoration: line-through;
 
 			.todolist_item_icon {
 				color: $green-20;
@@ -72,10 +87,11 @@
 	input {
 		transition: all 0.1s ease-out;
 		border: 0;
-		border-bottom: 1px solid $disabled;
+		border-bottom: 2px solid $disabled;
 		outline: 0;
 		text-align: center;
 		padding: $padding;
+		margin: 0 $margin;
 
 		&:focus {
 			border-bottom: 2px solid $active;

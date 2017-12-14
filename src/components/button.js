@@ -9,7 +9,7 @@ class Button extends React.Component {
 	render() {
 		const { type, children, onClick } = this.props;
 		return (
-			<button disabled={(type === 'disable') ? "disabled" : ""}
+			<button disabled={(type === 'disabled') ? "disabled" : ""}
 				className={"btn " + (type ? "btn_" + type : "")}
 				onClick={onClick}>
 					{children}

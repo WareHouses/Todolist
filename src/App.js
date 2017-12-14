@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, Package, TodoList } from './components';
+import { Footer, Package, TodoTask } from './components';
 
 class App extends React.Component {
 	constructor(props) {
@@ -12,7 +12,7 @@ class App extends React.Component {
 			<React.Fragment>
 				<section className="maincontent">
 					<h1 className="big_title center">{Package.app_name}</h1>
-					<TodoList/>
+					<TodoTask/>
 				</section>
 				<Footer/>
 			</React.Fragment>
