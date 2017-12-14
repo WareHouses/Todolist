@@ -52,7 +52,7 @@ class TodoList extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			items: [],
+			items: (props.items) ? props.items : [],
 			text: ''
 		};
 	}
@@ -115,21 +115,18 @@ class TodoList extends React.Component {
 	};
 
 	render() {
-		let buttonText = "Limpiar";
-		let buttonType = "success";
-		if(this.state.text !== '') {
-			buttonText = "Agregar";
-			buttonType = "active";
-		}
-
+		const { text, items } = this.state;
 		return (
 			<section className="todolist">
-				<TDList items={this.state.items} removeItem={this.removeItem} toggleCheck={this.toggleCheck}/>
+				<TDList items={items} removeItem={this.removeItem} toggleCheck={this.toggleCheck}/>
 				<form onSubmit={this.handleSubmit} className="todolist_controls">
 					<input type="text"
 						onChange={this.handleChange}
-						value={this.state.text}/>
-					<Button type={buttonType}>{buttonText}</Button>
+						value={text}/>
+					<Button
+						type={text !== '' ? 'active' : 'success'}>
+						{text !== '' ? 'Agregar' : 'Limpiar'}
+					</Button>
 				</form>
 			</section>
 		);
