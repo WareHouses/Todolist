@@ -1,21 +1,27 @@
-.todolist_container {
-	display: flex;
+.todo_component {
 	width: 800px;
-}
 
-.todolist {
-	display: flex;
-	flex-direction: column;
-	width: 300px;
-	flex-grow: 1;
-	padding: $padding;
-
-	&:first-child {
-		flex-grow: 0;
-		border-right: 1px solid $gray-9;
+	.todo_component__title {
+		border-bottom: 2px solid $todolist-main-border;
 	}
 
-	.todolist_list {
+	.todo_component__content {
+		display: flex;
+	}
+
+	.todo_component__groups {
+		width: 300px;
+		padding-right: $padding;
+		padding-top: $padding;
+	}
+
+	.todo_component__items {
+		flex-grow: 1;
+		padding-left: $padding;
+		padding-top: $padding;
+	}
+
+	.todo_component__grouplist, .todo_component__itemlist {
 		list-style: none;
 		padding: 0;
 		flex-grow: 1;
@@ -26,11 +32,11 @@
 		margin-bottom: $margin;
 	}
 
-	.todolist_item {
+	.todo_component__group, .todo_component__item {
 		display: flex;
 		transition: all 0.1s ease-out;
 		user-select: none;
-		border-bottom: 1px solid $gray-9;
+		border-bottom: 1px solid $todolist-main-border;
 
 		&:last-child {
 			border-bottom: 0;
@@ -52,23 +58,31 @@
 			background: $green-90;
 			text-decoration: line-through;
 
-			.todolist_item_icon {
+			.todo_component__itemicon {
 				color: $green-20;
 			}
 		}
 	}
 
-	.todolist_item_icon {
+	.todo_component__itemicon {
 		padding: $padding;
 	}
 
-	.todolist_item_text {
+	.todo_component__itemtext {
 		flex-grow: 1;
 		padding: $padding;
 		word-break: break-all;
 	}
 
-	.todolist_item_remove {
+	.todo_component__counter {
+		margin: $margin 0;
+		display: inline-block;
+		min-width: 10px;
+		padding: 3px $padding;
+		border-radius: 10px;
+	}
+
+	.todo_component__itemremove {
 		opacity: 0.4;
 		padding: $padding;
 
@@ -78,24 +92,27 @@
 		}
 	}
 
-	.todolist_controls {
+	.todo_component__form {
 		display: flex;
-		flex-direction: column;
-		width: 100%;
+		align-items: center;
 	}
 
-	input {
+	.todo_component_input {
 		transition: all 0.1s ease-out;
 		border: 0;
 		border-bottom: 2px solid $disabled;
 		outline: 0;
-		text-align: center;
 		padding: $padding;
-		margin: 0 $margin;
+		flex-grow: 1;
 
 		&:focus {
 			border-bottom: 2px solid $active;
 			text-align: left;
 		}
+	}
+
+	.todo_component__button {
+		margin-left: $margin;
+		margin-bottom: $margin;
 	}
 }

@@ -12,7 +12,7 @@ class App extends React.Component {
 			<React.Fragment>
 				<section className="maincontent">
 					<h1 className="big_title center">{Package.app_name}</h1>
-					<TodoTask/>
+					<TodoTask title="Todo REACT component"/>
 				</section>
 				<Footer/>
 			</React.Fragment>

@@ -9,11 +9,12 @@ class TDItem extends React.Component {
 
 	render() {
 		const { id, text, check, removeItem, toggleCheck } = this.props;
+		const itemIcon = "todo_component__itemicon icon" + (check ? " icon-check" : " icon-arrow-right");
 		return (
-			<li className={"todolist_item" + (check ? " checked" : "")}>
-				<span className={"icon todolist_item_icon" + (check ? " icon-check" : " icon-arrow-right")} onClick={() => toggleCheck(id)}/>
-				<span className="todolist_item_text" onClick={() => toggleCheck(id)}>{text}</span>
-				<span className="icon icon-times todolist_item_remove" onClick={() => removeItem(id)}/>
+			<li className={"todo_component__item " + (check ? " checked" : "")}>
+				<span className={itemIcon} onClick={() => toggleCheck(id)}/>
+				<span className="todo_component__itemtext" onClick={() => toggleCheck(id)}>{text}</span>
+				<span className="todo_component__itemremove icon icon-times" onClick={() => removeItem(id)}/>
 			</li>
 		);
 	}
@@ -27,7 +28,7 @@ class TDItemList extends React.Component {
 
 	render() {
 		return (
-			<ul className="todolist_list">
+			<ul className="todo_component__itemlist">
 				{this.props.items.map(item => (
 					<TDItem
 						key={item.id}
@@ -137,22 +138,16 @@ class TodoList extends React.Component {
 
 	render() {
 		const { text, items: stateItems } = this.state;
-		const { items: propsItems, taskName, disabled } = this.props;
-		const title = <h1 className="center">{taskName}</h1>
+		const { items: propsItems, disabled } = this.props;
+		const type = disabled ? 'disabled' : (text !== '' ? 'active' : 'success');
+		const buttonClass = disabled ? 'icon-ban' : (text !== '' ? 'icon-plus' : 'icon-trash-o');
 		return (
-			<section className="todolist">
-				{taskName ? title : ""}
-				<TDItemList items={(propsItems ? propsItems : stateItems)} removeItem={this.removeItem} toggleCheck={this.toggleCheck}/>
-				<form onSubmit={this.handleSubmit} className="todolist_controls">
-					<input type="text"
-						onChange={this.handleChange}
-						value={text}
-						disabled={disabled ? "disabled" : ""}/>
-					<Button
-						type={disabled ? 'disabled' : (text !== '' ? 'active' : 'success')}>
-						{disabled ? 'Agrega un grupo' : (text !== '' ? 'Agregar item' : 'Limpiar')}
-					</Button>
+			<section className="todo_component__items">
+				<form onSubmit={this.handleSubmit} className="todo_component__form">
+					<input className="todo_component_input" onChange={this.handleChange} value={text} disabled={disabled} placeholder="Agrega un item al grupo"/>
+					<Button type={type} className={"todo_component__button icon " + buttonClass}/>
 				</form>
+				<TDItemList items={(propsItems ? propsItems : stateItems)} removeItem={this.removeItem} toggleCheck={this.toggleCheck}/>
 			</section>
 		);
 	}

@@ -5064,7 +5064,6 @@ a {
   background: #FFFFFF;
   border: 1px solid;
   outline: 0;
-  margin: 10px;
   border-radius: 3px;
   -webkit-box-shadow: 0 1px 5px;
   box-shadow: 0 1px 5px;
@@ -5249,36 +5248,35 @@ a {
   }
 }
 
-.todolist_container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.todo_component {
   width: 800px;
 }
 
-.todolist {
+.todo_component .todo_component__title {
+  border-bottom: 2px solid #999999;
+}
+
+.todo_component .todo_component__content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+}
+
+.todo_component .todo_component__groups {
   width: 300px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.todo_component .todo_component__items {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
 }
 
-.todolist:first-child {
-  -webkit-box-flex: 0;
-  -ms-flex-positive: 0;
-  flex-grow: 0;
-  border-right: 1px solid #999999;
-}
-
-.todolist .todolist_list {
+.todo_component .todo_component__grouplist, .todo_component .todo_component__itemlist {
   list-style: none;
   padding: 0;
   -webkit-box-flex: 1;
@@ -5291,7 +5289,7 @@ a {
   margin-bottom: 10px;
 }
 
-.todolist .todolist_item {
+.todo_component .todo_component__group, .todo_component .todo_component__item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5304,37 +5302,37 @@ a {
   border-bottom: 1px solid #999999;
 }
 
-.todolist .todolist_item:last-child {
+.todo_component .todo_component__group:last-child, .todo_component .todo_component__item:last-child {
   border-bottom: 0;
 }
 
-.todolist .todolist_item:nth-child(odd) {
+.todo_component .todo_component__group:nth-child(odd), .todo_component .todo_component__item:nth-child(odd) {
   background: #e9fbfb;
 }
 
-.todolist .todolist_item:hover {
+.todo_component .todo_component__group:hover, .todo_component .todo_component__item:hover {
   background: #a8f0f0;
 }
 
-.todolist .todolist_item:active {
+.todo_component .todo_component__group:active, .todo_component .todo_component__item:active {
   -webkit-transform: scale(0.95);
   transform: scale(0.95);
 }
 
-.todolist .todolist_item.checked {
+.todo_component .todo_component__group.checked, .todo_component .todo_component__item.checked {
   background: #d4f7d4;
   text-decoration: line-through;
 }
 
-.todolist .todolist_item.checked .todolist_item_icon {
+.todo_component .todo_component__group.checked .todo_component__itemicon, .todo_component .todo_component__item.checked .todo_component__itemicon {
   color: #0f570f;
 }
 
-.todolist .todolist_item_icon {
+.todo_component .todo_component__itemicon {
   padding: 10px;
 }
 
-.todolist .todolist_item_text {
+.todo_component .todo_component__itemtext {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
@@ -5342,41 +5340,53 @@ a {
   word-break: break-all;
 }
 
-.todolist .todolist_item_remove {
+.todo_component .todo_component__counter {
+  margin: 10px 0;
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+
+.todo_component .todo_component__itemremove {
   opacity: 0.4;
   padding: 10px;
 }
 
-.todolist .todolist_item_remove:hover {
+.todo_component .todo_component__itemremove:hover {
   color: #d92626;
   opacity: 1;
 }
 
-.todolist .todolist_controls {
+.todo_component .todo_component__form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  width: 100%;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
-.todolist input {
+.todo_component .todo_component_input {
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
   border: 0;
   border-bottom: 2px solid #999999;
   outline: 0;
-  text-align: center;
   padding: 10px;
-  margin: 0 10px;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
-.todolist input:focus {
+.todo_component .todo_component_input:focus {
   border-bottom: 2px solid #0077AA;
   text-align: left;
+}
+
+.todo_component .todo_component__button {
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .hello {

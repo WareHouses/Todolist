@@ -8,11 +8,12 @@ class TDTask extends React.Component {
 	}
 
 	render() {
-		const { id, text, removeTask, showTaskList } = this.props;
+		const { id, text, removeTask, showTaskList, countTask } = this.props;
 		return (
-			<li className="todolist_item">
-				<span className="todolist_item_text" onClick={() => showTaskList(id)}>{text}</span>
-				<span className="icon icon-times todolist_item_remove" onClick={() => removeTask(id)}/>
+			<li className="todo_component__group">
+				<span className="todo_component__itemtext" onClick={() => showTaskList(id)}>{text}</span>
+				<span className="todo_component__counter">{countTask}</span>
+				<span className="todo_component__itemremove icon icon-times" onClick={() => removeTask(id)}/>
 			</li>
 		);
 	}
@@ -26,12 +27,13 @@ class TDTaskList extends React.Component {
 
 	render() {
 		return (
-			<ul className="todolist_list">
+			<ul className="todo_component__grouplist">
 				{this.props.tasks.map(task => (
 					<TDTask
 						key={task.id}
 						id={task.id}
 						text={task.text}
+						countTask={task.items.length}
 						removeTask={this.props.removeTask}
 						showTaskList={this.props.showTaskList}/>
 				))}
@@ -114,24 +116,23 @@ class TodoTask extends React.Component {
 
 	render() {
 		const { text, tasks, index } = this.state;
+		const { title } = this.props;
 		const items = (index !== -1 ? tasks[index].items : [])
 		const taskName = (index !== -1 ? tasks[index].text : "Agrega un grupo")
 		const disabled = tasks.length === 0;
 		return (
-			<section className="todolist_container">
-				<section className="todolist">
-					<TDTaskList tasks={tasks} removeTask={this.removeTask} showTaskList={this.showTaskList}/>
-					<form onSubmit={this.handleSubmit} className="todolist_controls">
-						<input type="text"
-							onChange={this.handleChange}
-							value={text}/>
-						<Button
-							type='active'>
-							Agregar grupo
-						</Button>
-					</form>
+			<section className="todo_component">
+				{title ? <h1 className="todo_component__title">{title + ": " + taskName}</h1> : ""}
+				<section className="todo_component__content">
+					<section className="todo_component__groups">
+						<form onSubmit={this.handleSubmit} className="todo_component__form">
+							<input className="todo_component_input" onChange={this.handleChange} value={text} placeholder="Agrega un grupo"/>
+							<Button type="active" className="todo_component__button icon icon-plus"/>
+						</form>
+						<TDTaskList tasks={tasks} removeTask={this.removeTask} showTaskList={this.showTaskList}/>
+					</section>
+					<TodoList items={items} setItems={this.setItems} disabled={disabled}/>
 				</section>
-				<TodoList items={items} setItems={this.setItems} taskName={taskName} disabled={disabled}/>
 			</section>
 		);
 	}
